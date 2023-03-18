@@ -7,7 +7,7 @@ let searchHistoryContainer = document.querySelector("#history");
 let forecastContainer = document.querySelector("#forecast");
 let todayContainer = document.querySelector("#today");
 
-
+//rendering forecast weather data history
 function renderSearchHistory() {
     searchHistoryContainer.innerHTML = "";
     
@@ -30,7 +30,7 @@ function renderSearchHistory() {
   
       
 
-  
+  //local storage to store user search history for future use
 
 function appendSearchHistory(search) {
   if (searchHistory.indexOf(search) !== -1) {
@@ -41,6 +41,7 @@ function appendSearchHistory(search) {
   renderSearchHistory();
 }
 
+//forecast weather data for a searched city
 function renderCurrentWeather(city, weatherData) {
   let date = moment().format("D/M/YYYY");
   let tempC = weatherData.main.temp;
@@ -152,7 +153,7 @@ function fetchWeather(location) {
     const queryWeatherUrl = `${weatherApiUrl}/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${weatherApiKey}`;
   
     console.log(queryWeatherUrl);
-  
+  //API calls to OpenWeatherMap
     fetch(queryWeatherUrl, { method: 'GET' })
       .then(function (response) {
         return response.json();
