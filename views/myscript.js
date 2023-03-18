@@ -95,6 +95,8 @@ function renderForecast(weatherData){
   forecastContainer.innerHTML = "";
   forecastContainer.appendChild(headingCol);
 
+  //function passed to filter() checks if the dt_txt property of each element includes the string "12"
+  
   let futureForecast = weatherData.filter(function (forecast) {
     return forecast.dt_txt.includes("12");
   });
@@ -166,7 +168,7 @@ function fetchWeather(location) {
         console.error(error);
       });
   }
-  
+  //fetchCoord that takes a search string as an argument. The search string is used to query the OpenWeatherMap API
   function fetchCoord(search) {
     const queryUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${search}&limit=5&appid=${weatherApiKey}`;
   
@@ -179,6 +181,7 @@ function fetchWeather(location) {
         if (!data[0]) {
           alert('Location not found!');
         } else {
+        //appendSearchHistory function with the search argument to add the search term to the search history list
           appendSearchHistory(search);
           fetchWeather(data[0]);
         }
@@ -198,7 +201,7 @@ function fetchWeather(location) {
     renderSearchHistory();
   }
   
- 
+ // Define subitSearchFrom function
   function submitSearchForm(event) {
     event.preventDefault();
     const search = searchInput.value.trim();
@@ -208,7 +211,7 @@ function fetchWeather(location) {
   }
   
 
-  // Define submitSearchForm function
+  // Define clickSearchHistory function
   function clickSearchHistory(event) {
     if (!event.target.classList.contains('btn-history')) {
       return;
